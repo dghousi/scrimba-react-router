@@ -3039,12 +3039,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function ServiceDetail(props) {
     var _useParams = (0, _reactRouterDom.useParams)(),
         serviceId = _useParams.serviceId;
+
+    var history = (0, _reactRouterDom.useHistory)();
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
-
-
     var thisService = _servicesData2.default.find(function (service) {
         return service._id === serviceId;
     });
+
+    var handleClick = function handleClick() {
+        setTimeout(function () {
+            history.push("/services");
+        }, 2000);
+    };
 
     return _react2.default.createElement(
         "div",
@@ -3065,6 +3071,11 @@ function ServiceDetail(props) {
             "p",
             null,
             thisService.description
+        ),
+        _react2.default.createElement(
+            "button",
+            { onClick: handleClick },
+            "Go to the service page"
         )
     );
 }
